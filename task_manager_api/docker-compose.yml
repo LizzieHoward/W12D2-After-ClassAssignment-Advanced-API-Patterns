@@ -1,1 +1,27 @@
-# Docker Compose configuration
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite:////data/task_manager.db
+      JWT_SECRET_KEY: replace-with-a-local-dev-secret
+      REDIS_URL: redis://redis:6379/0
+      RATE_LIMIT_REQUESTS: 100
+      RATE_LIMIT_WINDOW_SECONDS: 60
+      CORS_ORIGINS: "*"
+    volumes:
+      - api_data:/data
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./docker/redis.conf:/usr/local/etc/redis/redis.conf:ro
+
+volumes:
+  api_data:

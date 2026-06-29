@@ -1,1 +1,13 @@
-# Python project configuration
+[project]
+name = "task-manager-api"
+version = "1.0.0"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["app"]

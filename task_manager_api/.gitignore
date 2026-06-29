@@ -1,1 +1,13 @@
-# Git ignore file
+__pycache__/
+.pytest_cache/
+.pytest-tmp/
+.pytest-tmp-cov/
+.uv-cache/
+.coverage
+htmlcov/
+*.db
+*.sqlite
+background_events.log
+.env
+.venv/
+uv.lock
